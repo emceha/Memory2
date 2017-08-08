@@ -164,7 +164,7 @@ class Monster(object):
             image(blank, self.x, self.y)   
         
     def isOver(self, mx, my):
-        if(sqrt(sq(self.x - mx) + sq(self.y - my)) < 40):
+        if sqrt(sq(self.x - mx) + sq(self.y - my)) < 40:
             return True
         else:
             return False
