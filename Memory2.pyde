@@ -1,4 +1,4 @@
-import random
+from random import shuffle
 
 monsters = []
 m2check = set()
@@ -58,7 +58,7 @@ def populateBoard():
         monsters.append(Monster(face))
         monsters.append(Monster(face))
 
-    random.shuffle(monsters)
+    shuffle(monsters)
     
     mx = (width - 6 * blank.width) / 2
     my = (height - 6 * blank.height) / 2
@@ -90,9 +90,7 @@ class Monster():
 
     def update(self):
         if self in m2check or gameover:
-            cx = random.randint(-1, 1)
-            cy = random.randint(-1, 1)
-            image(self.face, self.x + cx, self.y + cy)
+            image(self.face, self.x + random(-1, 1), self.y + random(-1, 1))
         elif self.found or warmup:
             image(self.face, self.x, self.y)
         else:
