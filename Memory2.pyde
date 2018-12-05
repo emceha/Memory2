@@ -15,10 +15,10 @@ def setup():
     imageMode(CENTER)
     
     global blank
-    blank = loadImage('data/blank.png')
+    blank = loadImage('blank.png')
     
     global tile
-    tile = loadImage('data/background.jpg')
+    tile = loadImage('background.jpg')
     tile.resize(600, 600)
     tile.loadPixels()
                 
@@ -54,7 +54,7 @@ def checkForPair():
 
 def populateBoard():
     for n in range(18):
-        face = loadImage("data/%s.png" % n);
+        face = loadImage("{}.png".format(n));
         monsters.append(Monster(face))
         monsters.append(Monster(face))
 
