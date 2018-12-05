@@ -7,7 +7,6 @@ warmup = True
 gameover = False
 
 hold = millis()
-strt = millis()
 
 def setup():    
     size(600, 600)
@@ -28,20 +27,22 @@ def setup():
 def draw():
     global warmup
     background(tile)
-
-    if not gameover:
-        if millis() - strt < 8000:
-            stroke(230, 20, 20)
-            fill(220, 20, 20);
-            rect(0, 590, width - frameCount * 1.3, 5)
-        else:
-            warmup = False
-        checkForPair()
-  
+    
     for monster in monsters:
         monster.update()
+    
+    checkForPair()
+    
+    if warmup:
+        rlength = width - frameCount * 1.3
+        if rlength > 0:
+            stroke(230, 20, 20)
+            fill(220, 20, 20);
+            rect(0, 590, rlength, 5)
+        else:
+            warmup = False    
 
-        
+
 def checkForPair():
     global gameover
     if len(m2check) > 1 and (millis() - hold) > 600:
