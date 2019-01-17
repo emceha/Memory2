@@ -34,7 +34,7 @@ def draw():
     checkForPair()
     
     if warmup:
-        rlength = width - frameCount * 1.3
+        rlength = width - frameCount # * 2
         if rlength > 0:
             stroke(230, 20, 20)
             fill(220, 20, 20);
@@ -45,7 +45,7 @@ def draw():
 
 def checkForPair():
     global gameover
-    if len(m2check) > 1 and (millis() - hold) > 600:
+    if len(m2check) > 1 and (millis() - hold) > 750:
         m1, m2 = m2check.pop(), m2check.pop()
         if m1.face == m2.face:
             m1.found = m2.found = True 
@@ -74,11 +74,10 @@ def populateBoard():
 def mousePressed():
     global m2check, hold
     if not gameover and not warmup:
-        mx, my = mouseX, mouseY
         for m in monsters:
             if m in m2check or m.found:
                 continue
-            if m.isOver(mx, my):
+            if m.isOver(mouseX, mouseY):
                 if len(m2check) < 2:
                     m2check.add(m)
                     hold = millis()
